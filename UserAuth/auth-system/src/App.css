@@ -1,0 +1,60 @@
+body {
+    background-color: #4b1e13;
+    margin: 0px;
+    font-family: sans-serif;
+    color: white;
+}
+
+form h1 {
+    text-transform: uppercase;
+}
+
+.nav {
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+}
+
+form {
+    background: linear-gradient(to right, #4b1e13, #773a2a);
+    margin: auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    align-items: center;
+    border: 1px solid #efefef;
+    padding: 20px;
+}
+
+.input {
+    display: block;
+    width: 300px;
+    height: 30px;
+    margin-bottom: 20px;
+    border: 1px solid #d0c9f3;
+    border-radius: 1px;
+    font-family: VT323, monospace;
+}
+
+.gender {
+    width: 306px;
+    height: 35px;
+}
+
+.checkbox {
+    border: 0px;
+    font-size: 13px;
+    font-family: sans-serif;
+}
+
+button {
+    border: 1px solid #d0c9f3;
+    border-radius: 1px;
+    width: 90px;
+    height: 30px;
+    background: linear-gradient(to right, #5f291c, #662f21);
+    font-size: 16px;
+    text-transform: uppercase;
+    color: white;
+}
