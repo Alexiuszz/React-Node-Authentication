@@ -1,128 +1,178 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
-class Signup extends Component {
-    constructor() {
-        super();
-        this.state = {
-            firstName: '',
-            lastName: '',
-            sex: 'gender',
-            email: '',
-            username: '',
-            password: '',
-            terms: false
-        }
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
 
-    handleChange(e) {
-        const { name, value, checked, type } = e.target;
-        type === "checkbox" ?
-            this.setState({
-                [name]: checked
-            }) :
-            this.setState({
-                [name]: value
-            })
-    }
+import UserSignUp from './UserSignUp';
+import { emphasize } from '@material-ui/core/styles';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
+import { Link } from 'react-router-dom';
+import {
+    makeStyles,
+    Breadcrumbs,
+    AppBar,
+    Toolbar,
+    Link as MUILink,
+} from '@material-ui/core';
 
-    handleSubmit(e) {
-        console.log(this.state);
+//material UI styles *** needs  work ***
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& .MuiTextField-root': {
+            margin: theme.spacing(1),
+            width: '36ch',
+        },
+        background: 'linear-gradient(to right, #a599eb, #ffff)',
+        margin: 'auto',
+        display: 'flex',
+        flexWrap: 'wrap',
+        flexDirection: 'column',
+        width: "55%",
+        '@media (min-width:800px)': {
+            width: '40%',
+        },
+        alignItems: 'center',
+        border: '1px solid #efefef',
+        padding: '20px',
+    },
+    margin: {
+        margin: theme.spacing(1.5),
+    },
+    withoutLabel: {
+        marginTop: theme.spacing(3),
+    },
+    selectEmpty: {
+        width: '34ch',
+
+    },
+    navStyles: {
+        '&:hover, &:focus': {
+            color: theme.palette.grey[300],
+        },
+        '&:active': {
+            boxShadow: theme.shadows[1],
+            color: emphasize(theme.palette.grey[300], 0.12),
+        },
+    },
+    icon: {
+        color: "#fff"
+    },
+    nav: {
+        marginLeft: "95%",
+        justifyContent: 'space-around',
+        textTransform: 'uppercase',
+    },
+    appBar: {
+        height: '7ch',
+        boxShadow: 'none',
+    },
+    textField: {
+        width: '36ch',
+    },
+}));
+
+
+function SignUp() {
+    //State
+    const [user, setUser] = useState({
+        firstName: '',
+        lastName: '',
+        sex: '',
+        email: '',
+        username: '',
+        password: '',
+        terms: false,
+        showPassword: false,
+    })
+
+    const classes = useStyles();
+    const reqFirstNameError = user.firstName === "";
+    const reqLastNameError = user.lastName === "";
+    const reqGenderError = user.sex === "";
+    const reqEmailError = user.email === "";
+    const reqUsernameError = user.username === "";
+    const reqPasswordError = user.password === "";
+    const LinkRouter = (props) => <MUILink {...props} component={Link} />;
+
+    const handleSubmit = (e) => {
+        console.log(user);
         e.preventDefault();
+        if (user.username === "" || user.password === "" || user.email === "" || user.firstName === "" || user.lastName === "" || user.sex === "") {
+            alert("Required filled");
+            return;
+        }
+        if (!user.terms) {
+            alert("Please accept terms and conditions.");
+            return;
+        }
         axios({
             url: "/newUser",
             method: 'post',
-            data: this.state
+            data: user
         })
-        .then(function(response){
-            console.log(response.data);
-            !response.data ?
-            alert("Username already exists") : 
-            window.location.href = "http://localhost:3000/login";
-        })
-        .catch(function(error){ 
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(response.data);
+                !response.data ?
+                    alert("Username already exists") :
+                    window.location.href = "http://localhost:3000/login";
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
-    render() {
-        return (
-            <div className="signup">
+    const handleClickShowPassword = (e) => {
+        const { name, value } = e.target;
+        setUser({
+            ...user,
+            [name]: value,
+            showPassword: !user.showPassword
+        })
+    };
 
-                <form className="signup-form" onSubmit={this.handleSubmit}>
-                    <h1>Sign Up</h1>
-                    <input
-                        type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        onChange={this.handleChange}
-                        className="input"
-                        value={this.state.firstName}
+    const handleMouseDownPassword = (e) => {
+        e.preventDefault();
+    };
 
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="lastName"
-                        placeholder="Last Name"
-                        onChange={this.handleChange}
-                        className="input"
-                        value={this.state.lastName}
-                        required
-                    />
-                    <select
-                        name="sex"
-                        onChange={this.handleChange}
-                        className="input gender"
-                        value={this.state.sex}
-                    >
-                        <option value="gender">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                    <input
-                        type="email"
-                        name="email"
-                        placeholder="example@email.com"
-                        onChange={this.handleChange}
-                        className="input"
-                        value={this.state.email}
-                        required
-                    />
-                    <input
-                        type="text"
-                        name="username"
-                        placeholder="User Name"
-                        onChange={this.handleChange}
-                        className="input"
-                        value={this.state.username}
-                        required
-                    />
-                    <input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        onChange={this.handleChange}
-                        className="input"
-                        value={this.state.password}
-                        required
-                    />
-                    <label className={"input checkbox"}>
-                        <input
-                            type="checkbox"
-                            name='terms'
-                            checked={this.state.terms}
-                            onChange={this.handleChange}
-
-                        />Kindly agree to the Terms of Service
-            </label>
-                    <button>Sign-Up</button>
-                </form>
-            </div>
-        )
+    const handleChange = (e) => {
+        const { name, value, checked, type } = e.target;
+        type === "checkbox" ?
+            setUser({
+                ...user,
+                [name]: checked
+            }) :
+            setUser({
+                ...user,
+                [name]: value
+            })
     }
+    return (
+        <>
+            <AppBar color="transparent" className={classes.appBar} position="static">
+                <Toolbar>
+                    <Breadcrumbs separator="" aria-label="breadcrumb" className={classes.nav}>
+                        <LinkRouter color="primary" to="/" className={classes.navStyles}>
+                            <CloseRoundedIcon />
+                        </LinkRouter>
+                    </Breadcrumbs>
+                </Toolbar>
+            </AppBar>
+
+            <UserSignUp
+                user={user}
+                classes={classes}
+                reqFirstNameError={reqFirstNameError}
+                reqLastNameError={reqLastNameError}
+                reqGenderError={reqGenderError}
+                reqEmailError={reqEmailError}
+                reqUsernameError={reqUsernameError}
+                reqPasswordError={reqPasswordError}
+                LinkRouter={LinkRouter}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                handleClickShowPassword={handleClickShowPassword}
+                handleMouseDownPassword={handleMouseDownPassword}
+            />
+        </>
+    )
 }
 
-export default Signup;
+export default SignUp
