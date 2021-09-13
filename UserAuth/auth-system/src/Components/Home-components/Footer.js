@@ -1,19 +1,29 @@
 import React from "react";
-import { Link } from 'react-router-dom'
 
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Typography, Link as MUILink, } from '@material-ui/core';
+import {
+    Typography,
+    Input,
+    InputLabel,
+    FormControl,
+    IconButton,
+    Button
+} from '@material-ui/core';
 
-import useStyles from "../../styles/footerStyles"; 
+import useStyles from "../../styles/footerStyles";
 
 export default function Footer(props) {
+    const [email, setEmail] = React.useState('');
     const classes = useStyles();
     const LinkRouter = props.LinkRouter;
 
-
+    const handleChange = (e) => {
+        const { value } = e.target;
+        setEmail(value);
+    }
     return (
         <div className={classes.footerBlock}>
             <div className={classes.footerWrap}>
@@ -139,6 +149,20 @@ export default function Footer(props) {
                     </ListItem>
 
                 </List>
+
+                <div className={classes.footerSocials}>
+                    <Typography variant="body" color='inherit' className={classes.footerCopyRight}>
+                        Newsletter
+                    </Typography>
+
+                    <div className={classes.newsletter}>
+                        <FormControl className={classes.input} variant="outlined" >
+                            <InputLabel htmlFor="component-outlined">E-mail</InputLabel>
+                            <Input id="component-outlined" value={email} onChange={handleChange} label="Name" type="email" classes={classes.input}/>
+                        </FormControl>
+                        <Button variant="contained" className={classes.button}>Subscribe</Button>
+                    </div>
+                </div>
             </div>
             <div className={classes.divider}>______________________________________________________________________________________________________________</div>
             <div className={classes.footerBottomText}>

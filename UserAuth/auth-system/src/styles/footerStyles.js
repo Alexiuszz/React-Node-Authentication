@@ -51,6 +51,33 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.grey[400],
 
     },
+
+    footerSocials: {
+        fontSize: '18px',
+        marginTop: '5ch',
+        '& 	.MuiInput-input': {
+            width: '25ch',
+            height: '35px',
+            border: '2px solid #fff',
+            color: theme.palette.grey[900],
+            backgroundColor: theme.palette.grey[200]
+        },
+        '& .Mui-focused': {
+            color: theme.palette.grey[400],
+            borderColor: 'red'
+        },
+    },
+    input: {
+        marginTop: '10px',
+        borderTopRightadius: '0px',
+        borderBottomRightRadius: '0px',
+    },
+    button: {
+        borderTopLeftRadius: '0px',
+        borderBottomLeftRadius: '0px',
+        marginTop: '26.4px ',
+        height: '51.4px'
+    }
 }));
 
 export default useStyles;
