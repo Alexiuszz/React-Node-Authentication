@@ -1,137 +1,65 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
-import { useAuth } from '../use-auth.js';
-import Container from '@material-ui/core/Container';
-import { emphasize } from '@material-ui/core/styles';
-import {
-    makeStyles,
-    Typography,
-    Box,
-    Toolbar,
-    AppBar,
-    Link as MUILink,
-    Breadcrumbs,
-} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import LockOpenIcon from '@material-ui/icons/LockOpen';
-import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
+import { Link } from 'react-router-dom';
+import { Link as MUILink } from '@material-ui/core';
+import TemporaryDrawer from '../Components/Home-components/drawer';
+import Nav from '../Components/Nav/home-navbar';
+import Paper from '@material-ui/core/Paper';
+import Carousel from '../Components/Home-components/image-carousel';
+import LeftBar from '../Components/Home-components/left-sidebar';
+import RightBar from '../Components/Home-components/right-sidebar';
+import HomeInfo from '../Components/Home-components/Home-Info';
+import FourthLayer from '../Components/Home-components/fourthLayer';
+import MediaCards from '../Components/Home-components/media-cards';
+import Footer from '../Components/Home-components/Footer';
+import useStyles from '../styles/home-styles';
 
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-        color: "#fff"
-    },
-    home: {
-        color: '#fff',
-        background: 'linear-gradient(to right, #a599eb, #2e2853)',
-        height: '100vh',
-        '@media (max-width:800px)': {
-            height: '60vh',
-        },
-
-    },
-    homeTextBox: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        marginTop: '30vh',
-        '@media (max-width:800px)': {
-            marginTop: '10vh',
-        },
-    },
-    homeText: {
-        '@media (max-width:800px)': {
-            fontSize: "5rem"
-        },
-        '&:hover, &:focus': {
-            textDecoration: "none",
-        },
-    },
-    appBar: {
-        height: '50px',
-        boxShadow: 'none',
-    },
-    homeStyles: {
-        flexGrow: 1,
-        textTransform: 'uppercase',
-        textDecoration: "underline",
-    },
-    nav: {
-        margin: 0,
-        color: '#fff',
-        justifyContent: 'space-around',
-        textTransform: 'uppercase',
-    },
-    navStyles: {
-        '&:hover, &:focus': {
-            color: theme.palette.grey[300],
-        },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            color: emphasize(theme.palette.grey[300], 0.12),
-        },
-    },
-    icon: {
-        marginRight: theme.spacing(0.5),
-        width: 15,
-        height: 15,
-    },
-}));
 
 function Home() {
     const classes = useStyles();
-    return (
-        <Container component="div" className={classes.home} maxWidth="false" disableGutters>
-            <Nav />
-            <Box className={classes.homeTextBox}>
-                <Typography variant="h1" className={classes.homeText} component="h1" gutterBottom>
-                    <LinkRouter to="/" color="inherit" className={classes.homeText}>
-                        Track Logistics
-                    </LinkRouter>
-                </Typography>
-            </Box>
 
-        </Container>
+
+
+    return (
+        <div className={classes.root}>
+            <Nav
+                classes={classes}
+                LinkRouter={LinkRouter}
+            />
+            <TemporaryDrawer />
+            <div className={classes.secondLayer}>
+                <LeftBar />
+                <Carousel
+                    classes={classes}
+                    LinkRouter={LinkRouter}
+                />
+                <RightBar />
+            </div>
+
+            <div className={classes.thirdFourth}>
+                <Paper elevation={4} className={classes.thirdLayer}>
+                    <HomeInfo classes={classes} />
+                </Paper>
+
+                <Paper elevation={4} className={classes.fourthLayer}>
+                    <FourthLayer classes={classes} />
+                </Paper>
+            </div>
+
+
+            <div className={classes.cardLayer}>
+                <MediaCards />
+            </div>
+
+
+            {/* Footer */}
+            <div className={classes.footer}>
+                <Footer  LinkRouter={LinkRouter} />
+            </div>
+        </div>
 
     )
 }
 
 const LinkRouter = (props) => <MUILink {...props} component={Link} />
-
-
-
-function Nav() {
-    const classes = useStyles();
-    let auth = useAuth();
-    return (
-        <AppBar color="transparent" className={classes.appBar} position="static">
-            <Toolbar>
-                <Typography  className={classes.homeStyles}>
-                    <HomeIcon fontSize="small" className={classes.icon} />Home
-                </Typography>
-                {auth.token ?
-                    <Breadcrumbs separator="" aria-label="breadcrumb" className={classes.nav}>
-                        <LinkRouter color="inherit" to="/account">Account</LinkRouter>
-                        <button onClick={() => auth.signout()}>Logout</button>
-
-                    </Breadcrumbs>
-                    :
-                    <Breadcrumbs separator="" aria-label="breadcrumb" className={classes.nav}>
-                        <LinkRouter color="inherit" to="/login" className={classes.navStyles}>
-                            <LockOpenIcon fontSize="small" className={classes.icon} />Log in
-                        </LinkRouter>
-                        <LinkRouter color="inherit" to="/signup" className={classes.navStyles}>
-                            <AssignmentIndIcon fontSize="small" className={classes.icon} />Sign Up
-                        </LinkRouter>
-
-                    </Breadcrumbs>
-                }
-            </Toolbar>
-        </AppBar>
-
-    )
-}
 
 export default Home;

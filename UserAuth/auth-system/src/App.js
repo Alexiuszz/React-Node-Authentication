@@ -10,7 +10,7 @@ import Signup from './pages/Signup';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import UserAccount from './pages/UserAccount';
-import { ProvideAuth, useAuth } from './use-auth.js';
+import { ProvideAuth, useAuth } from './auth_setup/use-auth';
 
 function App() {  
   return (

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAuth } from '../use-auth.js';
+import { useAuth } from '../auth_setup/use-auth.js';
 
 function UserAccount() {
     let auth = useAuth();
