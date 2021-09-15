@@ -49,16 +49,17 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         fontSize: '18px',
         color: theme.palette.grey[400],
-
     },
-
     footerSocials: {
         fontSize: '18px',
         marginTop: '5ch',
+        marginLeft: '6ch',
         '& 	.MuiInput-input': {
-            width: '25ch',
-            height: '35px',
+            width: '20ch',
+            height: '25px',
             border: '2px solid #fff',
+            borderTopLeftRadius: '4px',
+            borderBottomLeftRadius: '4px',
             color: theme.palette.grey[900],
             backgroundColor: theme.palette.grey[200]
         },
@@ -71,12 +72,25 @@ const useStyles = makeStyles((theme) => ({
         marginTop: '10px',
         borderTopRightadius: '0px',
         borderBottomRightRadius: '0px',
+        marginBottom: '40px'
     },
     button: {
         borderTopLeftRadius: '0px',
         borderBottomLeftRadius: '0px',
         marginTop: '26.4px ',
-        height: '51.4px'
+        height: '42px',
+        width: '11ch',
+        backgroundColor: '#6a77b4',
+        color: '#fff',
+        '&:hover, &:focus': {
+            backgroundColor: theme.palette.grey[600],
+        },
+    },
+    inputLabel: {
+        paddingTop: '8px'
+    },
+    socialIcons: {
+        color: '#fff'
     }
 }));
 

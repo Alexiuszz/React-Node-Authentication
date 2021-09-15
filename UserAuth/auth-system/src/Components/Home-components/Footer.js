@@ -4,6 +4,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import YouTubeIcon from '@material-ui/icons/YouTube';
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import TwitterIcon from '@material-ui/icons/Twitter';
 import {
     Typography,
     Input,
@@ -151,20 +155,39 @@ export default function Footer(props) {
                 </List>
 
                 <div className={classes.footerSocials}>
+
                     <Typography variant="body" color='inherit' className={classes.footerCopyRight}>
                         Newsletter
                     </Typography>
-
                     <div className={classes.newsletter}>
                         <FormControl className={classes.input} variant="outlined" >
-                            <InputLabel htmlFor="component-outlined">E-mail</InputLabel>
-                            <Input id="component-outlined" value={email} onChange={handleChange} label="Name" type="email" classes={classes.input}/>
+                            <InputLabel htmlFor="component-outlined" className={classes.inputLabel}>E-mail</InputLabel>
+                            <Input id="component-outlined" value={email} onChange={handleChange} type="email" classes={classes.input} />
                         </FormControl>
                         <Button variant="contained" className={classes.button}>Subscribe</Button>
                     </div>
+
+                    <Typography variant="body" color='inherit' className={classes.footerCopyRight}>
+                        Follow Us
+                    </Typography>
+
+                    <div className={classes.socialIcons}>
+                        <IconButton >
+                            <FacebookIcon fontSize='large' className={classes.socialIcons} />
+                        </IconButton>
+                        <IconButton >
+                            <TwitterIcon fontSize='large' className={classes.socialIcons} />
+                        </IconButton>
+                        <IconButton >
+                            <InstagramIcon fontSize='large' className={classes.socialIcons} />
+                        </IconButton>
+                        <IconButton >
+                            <YouTubeIcon fontSize='large' className={classes.socialIcons} />
+                        </IconButton>
+                    </div>
                 </div>
             </div>
-            <div className={classes.divider}>______________________________________________________________________________________________________________</div>
+            <div className={classes.divider}>________________________________________________________________________________________________________</div>
             <div className={classes.footerBottomText}>
                 <Typography variant="h4" color='inherit' className={classes.footerLogo}>
                     MarketPlace
