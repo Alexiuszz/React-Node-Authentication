@@ -4,6 +4,7 @@ import { makeStyles, emphasize } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     grow: {
         flexGrow: 1,
+        width: '100%'
     },
     // Navigation Bar
     search: {
@@ -14,13 +15,9 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: theme.palette.grey[50],
             border: '1.5px solid #b7adf6 '
         },
-        marginRight: theme.spacing(2),
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing(3),
-            width: 'auto',
-        },
+        marginRight: theme.spacing(3),
+        width: '40%',
+        marginLeft: theme.spacing(2),
     },
     searchIcon: {
         padding: theme.spacing(0, 2),
@@ -33,17 +30,15 @@ const useStyles = makeStyles((theme) => ({
         color: 'black'
     },
     inputRoot: {
-        color: 'black',
+        color: '#000',
+        width: '100%',
+
     },
     inputInput: {
         padding: theme.spacing(1, 1, 1, 0),
         // vertical padding + font size from searchIcon
         paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
         transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: '50ch',
-        },
     },
 
     sectionDesktop: {
@@ -61,7 +56,11 @@ const useStyles = makeStyles((theme) => ({
     appBar: {
         color: '#fff',
         backgroundColor: '#211d35',
-        height: '10ch',
+        height: '8ch',
+        width: '100%'
+    },
+    toolbar:{
+        paddingTop: '1.5ch'
     },
     homeStyles: {
         flexGrow: 1,

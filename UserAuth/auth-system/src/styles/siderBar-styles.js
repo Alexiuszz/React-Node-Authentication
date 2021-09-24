@@ -2,8 +2,7 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: '100%',
-        maxWidth: '280px',
+        width: '220px',
         backgroundColor: theme.palette.background.paper,
         position: 'relative',
         display: 'none',
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
         height: '199.341px',
         display: 'flex',
         justifyContent: 'center',
-        fontSize: '20px',
+        fontSize: '14px',
     },
     rightSideBarText: {
         padding: '10px'

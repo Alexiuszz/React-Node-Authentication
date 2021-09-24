@@ -143,8 +143,8 @@ function Nav(props) {
     return (
         <div className={classes.grow}>
             <AppBar color="transparent" className={classes.appBar} position="static">
-                <Toolbar>
-                    <Typography variant="h3" className={classes.homeStyles}>
+                <Toolbar className= {classes.toolbar}>
+                    <Typography variant="h4" className={classes.homeStyles}>
                         MarketPlace
                     </Typography>
 
@@ -162,7 +162,6 @@ function Nav(props) {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </div>
-                    <div className={classes.grow} />
 
                     {/************* Desktop Nav***********/}
                     <div className={classes.sectionDesktop}>

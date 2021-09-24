@@ -10,20 +10,29 @@ import Typography from '@material-ui/core/Typography';
 
 import images from '../../images/imageData';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
     root: {
         width: 245,
+        [theme.breakpoints.down('sm')]: {
+            width: '50%',
+            margin: 'auto',
+            marginBottom: '3ch'
+        },
     },
     media: {
         height: 140,
     },
+
     //mediaCards
     mediaCards: {
         display: 'flex',
         flexDirection: 'row',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+        },
         justifyContent: 'space-around'
     }
-});
+}));
 
 function MediaCard(props) {
     const classes = useStyles();
@@ -58,7 +67,7 @@ function MediaCard(props) {
 }
 
 
-export default function MediaCards() {    
+export default function MediaCards() {
     const classes = useStyles();
     const cardData = [
         {

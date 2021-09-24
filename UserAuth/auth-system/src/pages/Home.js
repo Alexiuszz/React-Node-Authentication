@@ -21,11 +21,13 @@ function Home() {
 
     return (
         <div className={classes.root}>
-            <Nav
-                classes={classes}
-                LinkRouter={LinkRouter}
-            />
-            <TemporaryDrawer />
+            <div className={classes.thirdFourth}>                
+                <Nav
+                    classes={classes}
+                    LinkRouter={LinkRouter}
+                />
+                <TemporaryDrawer />
+            </div>
             <div className={classes.secondLayer}>
                 <LeftBar />
                 <Carousel

@@ -6,9 +6,9 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
-import Signup from './pages/Signup';
+import Signup from './pages/Auth-pages/Signup';
 import Home from './pages/Home';
-import Login from './pages/Login';
+import Login from './pages/Auth-pages/Login';
 import UserAccount from './pages/UserAccount';
 import { ProvideAuth, useAuth } from './auth_setup/use-auth';
 

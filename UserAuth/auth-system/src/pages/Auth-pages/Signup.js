@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import UserSignUp from '../Components/forms/UserSignUp';
+import UserSignup from '../../Components/forms/Courier-merchant-signup';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import { Link } from 'react-router-dom';
 import {
@@ -9,39 +9,39 @@ import {
     Toolbar,
     Link as MUILink,
 } from '@material-ui/core';
-import useStyles from '../styles/login-signup';
+import Paper from '@material-ui/core/Paper';
+import useStyles from '../../styles/login-signup';
 
 function SignUp() {
-    //State
     const [user, setUser] = useState({
-        firstName: '',
-        lastName: '',
-        sex: '',
+        name: '',
         email: '',
-        username: '',
         password: '',
+        account: '',
+        cPassword: '',
         terms: false,
         showPassword: false,
-    })
+    });
 
+    const [emptyField, setEmptyField] = useState(false);
     const classes = useStyles();
-    const reqFirstNameError = user.firstName === "";
-    const reqLastNameError = user.lastName === "";
-    const reqGenderError = user.sex === "";
+
+    const reqNameError = user.name === "";
     const reqEmailError = user.email === "";
-    const reqUsernameError = user.username === "";
     const reqPasswordError = user.password === "";
+    const reqAccountError = user.account === "";
+    const reqCPasswordError = user.cPassword === "";
+    const passCheck = user.cPassword === user.password;
     const LinkRouter = (props) => <MUILink {...props} component={Link} />;
 
     const handleSubmit = (e) => {
         console.log(user);
         e.preventDefault();
-        if (user.username === "" || user.password === "" || user.email === "" || user.firstName === "" || user.lastName === "" || user.sex === "") {
-            alert("Required filled");
+        if (user.name === "" || user.password === "" || user.cPassword === "" || user.email === "") {
+            setEmptyField(true);
             return;
         }
-        if (!user.terms) {
-            alert("Please accept terms and conditions.");
+        if (!passCheck) {
             return;
         }
         axios({
@@ -96,22 +96,24 @@ function SignUp() {
                     </Breadcrumbs>
                 </Toolbar>
             </AppBar>
-
-            <UserSignUp
-                user={user}
-                classes={classes}
-                reqFirstNameError={reqFirstNameError}
-                reqLastNameError={reqLastNameError}
-                reqGenderError={reqGenderError}
-                reqEmailError={reqEmailError}
-                reqUsernameError={reqUsernameError}
-                reqPasswordError={reqPasswordError}
-                LinkRouter={LinkRouter}
-                handleChange={handleChange}
-                handleSubmit={handleSubmit}
-                handleClickShowPassword={handleClickShowPassword}
-                handleMouseDownPassword={handleMouseDownPassword}
-            />
+            <Paper elevation={7} className={classes.paper}>
+                <UserSignup
+                    user={user}
+                    classes={classes}
+                    LinkRouter={LinkRouter}
+                    reqNameError={reqNameError}
+                    emptyField={emptyField}
+                    reqEmailError={reqEmailError}
+                    reqPasswordError={reqPasswordError}
+                    reqAccountError={reqAccountError}
+                    reqCPasswordError={reqCPasswordError}
+                    passCheck={passCheck}
+                    handleChange={handleChange}
+                    handleSubmit={handleSubmit}
+                    handleClickShowPassword={handleClickShowPassword}
+                    handleMouseDownPassword={handleMouseDownPassword}
+                />
+            </Paper>
         </>
     )
 }

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 //user schema for data object structure
-const companySchema = new Schema({
+const courierSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -24,6 +24,6 @@ const companySchema = new Schema({
     }
 }, { timestamps: true });
 
-const Company = mongoose.model('company', companySchema);
+const Courier = mongoose.model('courier', courierSchema);
 
-module.exports = Company;
+module.exports = Courier;

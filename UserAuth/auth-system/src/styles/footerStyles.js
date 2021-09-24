@@ -5,20 +5,32 @@ const useStyles = makeStyles((theme) => ({
     //footer
 
     footerBlock: {
-        width: '1190px',
+        width: '100%',
         margin: 'auto',
         marginTop: '10ch',
     },
     footerWrap: {
         display: 'flex',
         flexDirection: 'row',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            alignItems: 'center'
+        },
         color: '#fff',
-        margin: 'auto',
-        fontSize: '16px',
+        fontSize: '14px',
     },
+    footerLinks: {
+        display: 'flex',
+        flexDirection: 'row',
+        margin: '0px 5ch',
+    },
+
     footers: {
         marginTop: '40px',
         marginRight: '50px',
+        [theme.breakpoints.down('lg')]: {
+            marginRight: '10px',
+        },
         color: '#fff',
     },
     footerStyles: {
@@ -36,24 +48,28 @@ const useStyles = makeStyles((theme) => ({
     footerBottomText: {
         display: 'flex',
         flexDirection: 'row',
+        margin: 'auto',
     },
     footerLogo: {
-        margin: '1ch 1.3ch 0ch 0ch'
+        margin: '1ch 1.3ch 2ch 1ch'
     },
     footerCopyRight: {
         marginTop: '5ch',
         fontSize: '14px',
         color: theme.palette.grey[400],
-
     },
     divider: {
         fontSize: '18px',
+        [theme.breakpoints.down('sm')]: {
+            fontSize: '8px',
+        },
         color: theme.palette.grey[400],
     },
     footerSocials: {
         fontSize: '18px',
         marginTop: '5ch',
-        marginLeft: '6ch',
+        marginLeft: '4ch',
+        marginRight: '2.5ch',
         '& 	.MuiInput-input': {
             width: '20ch',
             height: '25px',

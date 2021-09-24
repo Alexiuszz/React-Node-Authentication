@@ -5,7 +5,7 @@
 */
 
 form {
-    background: linear-gradient(to right, #4027ce, #726a99);
+    background: linear-gradient(to right, #4027ce, #4f4a6e);
     margin: auto;
     margin-top: 50px;
     display: ;
@@ -17,6 +17,7 @@ form {
     float: inline;
     align-item: ;
     border-color: ;
+    flex-grow: ;
 }
 
 

@@ -3,25 +3,32 @@ import { makeStyles, emphasize } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
     root: {
         '& .MuiTextField-root': {
-            margin: theme.spacing(1),
             width: '36ch',
+            fontSize: '14px'
         },
-        background: 'linear-gradient(to right, #bfb7ec, #ffff)',
+        background: '#fff',
         margin: 'auto',
         display: 'flex',
         flexWrap: 'wrap',
         flexDirection: 'column',
+        alignItems: 'center',
+        padding: '20px',
+        width: "100%",
+    },
+    margin: {
+        margin: '10px'
+    },
+    paper: {
         width: "55%",
         '@media (min-width:800px)': {
             width: '40%',
         },
-        alignItems: 'center',
-        border: '10px solid #efefef',
-        borderRadius: '50px',
-        padding: '20px',
+        margin: 'auto',
+        marginBottom: '5ch'
     },
-    margin: {
-        margin: theme.spacing(1.),
+    title: {
+        margin: theme.spacing(1),
+        color: '#4f4a6e'
     },
     withoutLabel: {
         marginTop: theme.spacing(3),
@@ -49,11 +56,18 @@ const useStyles = makeStyles((theme) => ({
     },
     textField: {
         width: '36ch',
-        height: '10ch',
-        backgroundColor: 'fff',
+        height: '8ch',
+        backgroundColor: '#fff',
     },
     button: {
-        width: '36ch',
+        width: '40ch',
+        backgroundColor: '#6a77b4',
+        color: '#fff'
+
+    },
+    texts: {
+        width: '39ch',
+        fontSize: '14px',
     }
 }));
 

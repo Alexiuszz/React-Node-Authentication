@@ -3,12 +3,11 @@ import { makeStyles, emphasize } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.grey[200],
+        maxWidth: '100%'
     },
     grow: {
         flexGrow: 1,
     },
-
     icon: {
         marginRight: theme.spacing(0.5),
         width: 15,
@@ -19,11 +18,15 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
+        width: '100%',
+        margin: 'auto',
+
+        marginTop: "8ch",
     },
 
     //image display
     wrapper: {
-        width: "863px",
+        width: "823px",
         marginTop: "20px",
     },
     paper: {
@@ -32,10 +35,12 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: "white",
         margin: 'auto',
         borderLeft: '0px',
+        width: '100%'
     },
     sliderImg: {
         zIndex: 2,
         position: 'relative',
+        width: '100%'
     },
     sliderButton: {
         zIndex: 3,
@@ -53,8 +58,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     thirdFourth: {
-        margin: 'auto',
-        width: '1510px'
+        width: '100%'
     },
     //third layer
     thirdLayer: {
@@ -65,7 +69,7 @@ const useStyles = makeStyles((theme) => ({
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-around',
-            width: '1190px',
+            width: '70%',
             borderBottomLeftRadius: '70px',
             borderTopRightRadius: '70px',
         },
@@ -95,77 +99,37 @@ const useStyles = makeStyles((theme) => ({
         color: '#000',
         backgroundColor: "#cec9eb",
         display: 'block',
-        [theme.breakpoints.up('lg')]: {
+        [theme.breakpoints.up('md')]: {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-around',
-            width: '1190px',
+            width: '70%',
             borderBottomLeftRadius: '70px',
             borderTopRightRadius: '70px',
-            marginLeft: '320px',
+            marginLeft: '30%',
         },
     },
     //cardLayer
     cardLayer: {
-        width: '863px',
+        [theme.breakpoints.up('md')]: {
+            width: '836px'
+        },
         margin: 'auto',
         marginTop: '10ch',
         marginBottom: '10ch'
     },
     //footer
-    
+
     footer: {
         backgroundColor: '#211d35',
         height: '50ch',
-        color: '#fff',
-    },
-    footerBlock: {
-        width: '1190px',
-        margin: 'auto',
-        marginTop: '10ch',
-    },    
-    footerWrap: {
-        display: 'flex',
-        flexDirection: 'row',        
-        color: '#fff',
-        margin: 'auto',
-        fontSize: '16px',
-    },
-    footers: {
-        marginTop: '40px',
-        marginRight: '50px',        
-        color: '#fff',
-    },
-    footerStyles: {
-        fontSize: "16px",
-        color: theme.palette.grey[400],
-        '&:hover, &:focus': {
-            color: theme.palette.grey[500],
-            textDecoration: 'none',
+        [theme.breakpoints.down('sm')]: {
+            height: '85ch',
         },
-        '&:active': {
-            boxShadow: theme.shadows[1],
-            color: emphasize(theme.palette.grey[300], 0.12),
-        },
+        color: '#fff',
+        width: '100%'
     },
-    footerBottomText:{
-        display: 'flex',
-        flexDirection: 'row',        
-    },
-    footerLogo: {
-        margin: '1ch 1.3ch 0ch 0ch'
-    },
-    footerCopyRight: {
-        marginTop: '5ch',
-        fontSize: '14px',
-        color: theme.palette.grey[400],
 
-    },
-    divider: {
-        fontSize: '18px',
-        color: theme.palette.grey[400],
-
-    },
 }));
 
 export default useStyles;
