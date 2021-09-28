@@ -14,7 +14,7 @@ import useStyles from '../../styles/login-signup';
 
 function SignUp() {
     const [user, setUser] = useState({
-        name: '',
+        companyName: '',
         email: '',
         password: '',
         account: '',
@@ -26,7 +26,7 @@ function SignUp() {
     const [emptyField, setEmptyField] = useState(false);
     const classes = useStyles();
 
-    const reqNameError = user.name === "";
+    const reqNameError = user.companyName === "";
     const reqEmailError = user.email === "";
     const reqPasswordError = user.password === "";
     const reqAccountError = user.account === "";
@@ -37,7 +37,7 @@ function SignUp() {
     const handleSubmit = (e) => {
         console.log(user);
         e.preventDefault();
-        if (user.name === "" || user.password === "" || user.cPassword === "" || user.email === "") {
+        if (user.companyName === "" || user.account === "" || user.password === "" || user.cPassword === "" || user.email === "") {
             setEmptyField(true);
             return;
         }
@@ -45,14 +45,14 @@ function SignUp() {
             return;
         }
         axios({
-            url: "/newUser",
+            url: `auth/new-${user.account}`,
             method: 'post',
             data: user
         })
             .then(function (response) {
                 console.log(response.data);
                 !response.data ?
-                    alert("Username already exists") :
+                    alert("email already exists") :
                     window.location.href = "http://localhost:3000/login";
             })
             .catch(function (error) {

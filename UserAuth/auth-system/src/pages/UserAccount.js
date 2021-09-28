@@ -9,7 +9,7 @@ function UserAccount() {
         return (
             <div>
                 <h1>User Account </h1>
-                <p>{auth.user.username}</p>
+                <p>{auth.user.email}</p>
             </div>
         )
     }

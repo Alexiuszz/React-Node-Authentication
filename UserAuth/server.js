@@ -1,10 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+
 const cors = require('cors');
 const passportSetup = require('./config/passport-setup');
 const db = require("./db");
-
+const authRoute = require("./route-controllers/auth-routes");
 const app = express();
 
 app.set("port", process.env.PORT || 3001);
@@ -18,7 +21,7 @@ app.use(bodyParser.json());
 
 app.use(
     cors({
-        origin: "http://localhost:3000", // <-- location of the react app were connecting to
+        origin: "http://localhost:3000/", // <-- location of the react app were connecting to
         credentials: true,
     })
 );
@@ -32,6 +35,8 @@ app.use(require('express-session')({
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+app.use('/auth', authRoute);
 
 app.post("/newUser", (req, res) => {
     db.users.findByUsername(req.body.username, function(err, user) {
@@ -66,6 +71,14 @@ app.get('/signout',
         });
     });
 
-app.listen(app.get("port"), () => {
-    console.log(`Find the server at: http://localhost:${app.get("port")}/`)
-})
+
+//Mongo DB connect
+//mongoose connection
+mongoose.connect('mongodb+srv://Alexius:emmanuel093@datacluster.f2vtb.mongodb.net/DataCluster?retryWrites=true&w=majority', { useNewUrlParser: true, useUnifiedTopology: true })
+    .then((result) =>
+        //Wait for DB connection before starting Express Server
+        app.listen(app.get("port"), () => {
+            console.log(`Find the server at: http://localhost:${app.get("port")}`)
+        })
+    )
+    .catch((err) => console.log(err));

@@ -36,15 +36,15 @@ function useProvideAuth() {
     const login = (userData) => {
         console.log(userData);
         return axios({
-            url: '/login',
+            url: 'auth/login',
             method: "post",
             data: userData
         })
             .then(res => {
-                if (res.data.id !== null && res.data.id !== undefined) {
+                if (res.data._id !== null && res.data._id !== undefined) {
                     setUser(res.data);
                     setIsLoaded(true);
-                    setUserToken(res.data.id + "@" + res.data.username, new Date(new Date().getTime() + 1000 * 60 * 60));
+                    setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60));
                 } else {
                     alert("Username or Password incorrect!");
                 }
@@ -71,11 +71,11 @@ function useProvideAuth() {
                 method: "GET",
                 url: "/getUser",
             }).then((res) => {
-                if (res.data.id !== null && res.data.id !== undefined) {
+                if (res.data._id !== null && res.data._id !== undefined) {
                     console.log(res.data);
                     setUser(res.data);
                     setIsLoaded(true);
-                    setUserToken(res.data.id + "@" + res.data.username, new Date(new Date().getTime() + 1000 * 60 * 60));
+                    setUserToken(res.data._id + "@" + res.data.email, new Date(new Date().getTime() + 1000 * 60 * 60));
                 } else {
                     setTokenExpirationTime(null);
                     localStorage.removeItem('userData');

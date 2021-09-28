@@ -3,21 +3,14 @@ const Schema = mongoose.Schema;
 
 //user schema for data object structure
 const merchantSchema = new Schema({
-    username: {
+    companyName: {
         type: String,
-        required: true
+        required: true,
     },
     hash: {
         type: String
     },
-    googleId: {
-        type: String,
-    },
-    name: {
-        type: String,
-        required: true,
-    },
-    CEO: {
+    email: {
         type: String,
         required: true,
     },

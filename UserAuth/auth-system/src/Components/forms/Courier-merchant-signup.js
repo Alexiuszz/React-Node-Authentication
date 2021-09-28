@@ -35,9 +35,9 @@ function UserSignup(props) {
                     <InputLabel htmlFor="name-input">Company Name</InputLabel>
                     <Input
                         id="name-input"
-                        name="name"
+                        name="companyName"
                         onChange={props.handleChange}
-                        value={props.user.name}
+                        value={props.user.companyName}
                         aria-describedby="name-input-text"
                     />
                     <FormHelperText id="name-input-text">Required Field*</FormHelperText>
